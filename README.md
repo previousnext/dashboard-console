@@ -84,3 +84,18 @@ Or if you followed the steps above for downloading the phar file:
 dashboard-console snapshots
 ```
 
+## Building PHAR
+
+**Install phar-composer**
+
+```
+https://github.com/clue/phar-composer#install
+```
+
+**Build the project**
+
+```
+$ php -d phar.readonly=off /usr/local/bin/phar-composer build .
+```
+
+NOTE: The above was run in the projects root.
