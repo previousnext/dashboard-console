@@ -9,6 +9,7 @@ namespace PNX\Dashboard;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -26,7 +27,8 @@ class SnapshotsCommand extends BaseDashboardCommand {
       ->setDescription("Query the PNX Dashboard API for snapshot data.")
       ->addOption('client-id', 'c', InputArgument::OPTIONAL, "Filter by the client ID.")
       ->addOption('check-name', NULL, InputArgument::OPTIONAL, "Filter by the check name.")
-      ->addOption('check-type', NULL, InputArgument::OPTIONAL, "Filter by the check type.");
+      ->addOption('check-type', NULL, InputArgument::OPTIONAL, "Filter by the check type.")
+      ->addOption('csv', NULL, InputOption::VALUE_NONE, "Output the values in csv format, if not selected output will be in table format.");
   }
 
   /**
@@ -55,36 +57,74 @@ class SnapshotsCommand extends BaseDashboardCommand {
       $output->writeln("Error calling dashboard API");
     }
     else {
-
       $json = $response->getBody();
       $sites = json_decode($json, TRUE);
 
-      $table = new Table($output);
-      $table
-        ->setHeaders([
-          'Timestamp',
-          'Client ID',
-          'Site ID',
-          'Notice',
-          'Warning',
-          'Error'
-        ]);
-
-      foreach ($sites as $site) {
-        $table->addRow([
-          $this->formatTimestamp($site['timestamp']),
-          $site['client_id'],
-          $site['site_id'],
-          $this->formatAlert('notice', $site['alert_summary']['notice']),
-          $this->formatAlert('warning', $site['alert_summary']['warning']),
-          $this->formatAlert('error', $site['alert_summary']['error']),
-        ]);
+      $csv = $input->getOption('csv');
+      if ($csv) {
+        $this->formatCSV($output, $sites);
       }
-
-      $table->setStyle('borderless');
-      $table->render();
+      else {
+        $this->formatTable($output, $sites);
+      }
     }
 
+  }
+
+  /**
+   * Formats the sites into CSV structure. Ideal for scripting.
+   *
+   * @param OutputInterface $output
+   *   Output interface which will get written to.
+   * @param array $sites
+   *   A list of sites.
+   */
+  protected function formatCSV(OutputInterface $output, $sites) {
+    foreach ($sites as $site) {
+      $line = array(
+        $site['client_id'],
+        $site['site_id'],
+        $site['alert_summary']['notice'],
+        $site['alert_summary']['warning'],
+        $site['alert_summary']['error'],
+      );
+      $output->writeln(implode(",", $line));
+    }
+  }
+
+  /**
+   * Formats the sites into Table structure.
+   *
+   * @param OutputInterface $output
+   *   Output interface which will get written to.
+   * @param array $sites
+   *   A list of sites.
+   */
+  protected function formatTable(OutputInterface $output, $sites) {
+    $table = new Table($output);
+    $table
+      ->setHeaders([
+        'Timestamp',
+        'Client ID',
+        'Site ID',
+        'Notice',
+        'Warning',
+        'Error'
+      ]);
+
+    foreach ($sites as $site) {
+      $table->addRow([
+        $this->formatTimestamp($site['timestamp']),
+        $site['client_id'],
+        $site['site_id'],
+        $this->formatAlert('notice', $site['alert_summary']['notice']),
+        $this->formatAlert('warning', $site['alert_summary']['warning']),
+        $this->formatAlert('error', $site['alert_summary']['error']),
+      ]);
+    }
+
+    $table->setStyle('borderless');
+    $table->render();
   }
 
   /**
