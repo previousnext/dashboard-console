@@ -36,48 +36,56 @@ class SnapshotCommand extends BaseDashboardCommand {
    */
   protected function doExecute(InputInterface $input, OutputInterface $output, $options) {
 
-    $site_id = $input->getOption('site-id');
+    $site_ids = explode(',', $input->getOption('site-id'));
 
-    $response = $this->client->get('snapshots/' . $site_id, $options);
-
-    if ($response->getStatusCode() != 200) {
-      $output->writeln("Error calling dashboard API");
-    }
-    else {
-
-      $json = $response->getBody();
-      $snapshot = json_decode($json, TRUE);
-
-      $table = new Table($output);
-      $table->addRow(['Timestamp:', $this->formatTimestamp($snapshot['timestamp'])]);
-      $table->addRow(['Client ID:', $snapshot['client_id']]);
-      $table->addRow(['Site ID:', $snapshot['site_id']]);
-
-      $table->setStyle('compact');
-      $table->render();
-
-      $checks = $snapshot['checks'];
-
-      $table = new Table($output);
-      $table
-        ->setHeaders([
-          'Type',
-          'Name',
-          'Description',
-          'Alert Level',
-        ]);
-
-      foreach ($checks as $check) {
-        $table->addRow([
-          $check['type'],
-          $check['name'],
-          $this->truncate($check['description']),
-          $this->formatAlert($check['alert_level']),
-        ]);
+    foreach ($site_ids as $site_id) {
+      try {
+        $response = $this->client->get('snapshots/' . $site_id, $options);
+      }
+      catch (\Exception $e) {
+        $output->writeln(sprintf('<error>Unable to retrieve %s</error>', $site_id));
+        continue;
       }
 
-      $table->setStyle('borderless');
-      $table->render();
+      if ($response->getStatusCode() != 200) {
+        $output->writeln("Error calling dashboard API");
+      }
+      else {
+
+        $json = $response->getBody();
+        $snapshot = json_decode($json, TRUE);
+
+        $table = new Table($output);
+        $table->addRow(['Timestamp:', $this->formatTimestamp($snapshot['timestamp'])]);
+        $table->addRow(['Client ID:', $snapshot['client_id']]);
+        $table->addRow(['Site ID:', $snapshot['site_id']]);
+
+        $table->setStyle('compact');
+        $table->render();
+
+        $checks = $snapshot['checks'];
+
+        $table = new Table($output);
+        $table
+          ->setHeaders([
+            'Type',
+            'Name',
+            'Description',
+            'Alert Level',
+          ]);
+
+        foreach ($checks as $check) {
+          $table->addRow([
+            $check['type'],
+            $check['name'],
+            $this->truncate($check['description']),
+            $this->formatAlert($check['alert_level']),
+          ]);
+        }
+
+        $table->setStyle('borderless');
+        $table->render();
+      }
     }
 
   }
