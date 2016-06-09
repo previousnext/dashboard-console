@@ -26,7 +26,8 @@ class SnapshotsCommand extends BaseDashboardCommand {
       ->setDescription("Query the PNX Dashboard API for snapshot data.")
       ->addOption('client-id', 'c', InputArgument::OPTIONAL, "Filter by the client ID.")
       ->addOption('check-name', NULL, InputArgument::OPTIONAL, "Filter by the check name.")
-      ->addOption('check-type', NULL, InputArgument::OPTIONAL, "Filter by the check type.");
+      ->addOption('check-type', NULL, InputArgument::OPTIONAL, "Filter by the check type.")
+      ->addOption('env', 'e', InputArgument::OPTIONAL, "Filter by the env type.");
   }
 
   /**
@@ -49,6 +50,11 @@ class SnapshotsCommand extends BaseDashboardCommand {
       $options['query']['type'] = $type;
     }
 
+    $env = $input->getOption('env');
+    if (isset($env)) {
+      $options['query']['env'] = $env;
+    }
+
     $response = $this->client->get('snapshots', $options);
 
     if ($response->getStatusCode() != 200) {
@@ -65,6 +71,7 @@ class SnapshotsCommand extends BaseDashboardCommand {
           'Timestamp',
           'Client ID',
           'Site ID',
+          'Env',
           'Notice',
           'Warning',
           'Error'
@@ -75,6 +82,7 @@ class SnapshotsCommand extends BaseDashboardCommand {
           $this->formatTimestamp($site['timestamp']),
           $site['client_id'],
           $site['site_id'],
+          $site['env'],
           $this->formatAlert('notice', $site['alert_summary']['notice']),
           $this->formatAlert('warning', $site['alert_summary']['warning']),
           $this->formatAlert('error', $site['alert_summary']['error']),
