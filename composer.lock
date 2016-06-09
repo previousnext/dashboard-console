@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bb385dcbe2c6074f363b8c2d07a452cc",
-    "content-hash": "72d680156b4260c66fd40cbab419872f",
+    "hash": "2373217184f4bc3fcb2a12291d079348",
+    "content-hash": "6a99cf8c9b2bf1eabac31c6779419884",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -462,7 +462,7 @@
             "version": "7.2.5",
             "source": {
                 "type": "git",
-                "url": "http://git.drupal.org/project/coder.git",
+                "url": "https://github.com/klausi/coder.git",
                 "reference": "f1d99c99744e4703e8c2c654bddd313173d74b82"
             },
             "require": {
