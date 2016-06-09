@@ -88,6 +88,7 @@ class SnapshotsCommand extends BaseDashboardCommand {
       $line = array(
         $site['client_id'],
         $site['site_id'],
+        $site['env'],
         $site['alert_summary']['notice'],
         $site['alert_summary']['warning'],
         $site['alert_summary']['error'],
