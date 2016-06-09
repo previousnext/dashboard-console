@@ -28,6 +28,7 @@ class SnapshotsCommand extends BaseDashboardCommand {
       ->addOption('client-id', 'c', InputArgument::OPTIONAL, "Filter by the client ID.")
       ->addOption('check-name', NULL, InputArgument::OPTIONAL, "Filter by the check name.")
       ->addOption('check-type', NULL, InputArgument::OPTIONAL, "Filter by the check type.")
+      ->addOption('env', 'e', InputArgument::OPTIONAL, "Filter by the env type.")
       ->addOption('csv', NULL, InputOption::VALUE_NONE, "Output the values in csv format, if not selected output will be in table format.");
   }
 
@@ -36,8 +37,8 @@ class SnapshotsCommand extends BaseDashboardCommand {
    */
   protected function doExecute(InputInterface $input, OutputInterface $output, $options) {
 
-    $client_id = $input->getOption('client-id');
-    if (isset($client_id)) {
+    $client_id = $input->getOption('client-id') ?: getenv('DASHBOARD_CLIENT_ID');
+    if ($client_id) {
       $options['query']['client_id'] = $client_id;
     }
 
@@ -51,6 +52,11 @@ class SnapshotsCommand extends BaseDashboardCommand {
       $options['query']['type'] = $type;
     }
 
+    $env = $input->getOption('env');
+    if (isset($env)) {
+      $options['query']['env'] = $env;
+    }
+
     $response = $this->client->get('snapshots', $options);
 
     if ($response->getStatusCode() != 200) {
@@ -59,7 +65,6 @@ class SnapshotsCommand extends BaseDashboardCommand {
     else {
       $json = $response->getBody();
       $sites = json_decode($json, TRUE);
-
       $csv = $input->getOption('csv');
       if ($csv) {
         $this->formatCSV($output, $sites);
@@ -68,7 +73,6 @@ class SnapshotsCommand extends BaseDashboardCommand {
         $this->formatTable($output, $sites);
       }
     }
-
   }
 
   /**
@@ -107,6 +111,7 @@ class SnapshotsCommand extends BaseDashboardCommand {
         'Timestamp',
         'Client ID',
         'Site ID',
+        'Env',
         'Notice',
         'Warning',
         'Error'
@@ -117,6 +122,7 @@ class SnapshotsCommand extends BaseDashboardCommand {
         $this->formatTimestamp($site['timestamp']),
         $site['client_id'],
         $site['site_id'],
+        $site['env'],
         $this->formatAlert('notice', $site['alert_summary']['notice']),
         $this->formatAlert('warning', $site['alert_summary']['warning']),
         $this->formatAlert('error', $site['alert_summary']['error']),

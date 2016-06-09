@@ -84,3 +84,19 @@ Or if you followed the steps above for downloading the phar file:
 dashboard-console snapshots
 ```
 
+### Personalisation
+
+Add the list of clients you maintain to your `~/.bashrc`
+
+```bash
+export DASHBOARD_CLIENT_ID=bnm,police
+```bash
+
+Now when you run dashboard.php snapshots, you'll only see the clients you maintain.
+
+Most of the time you'll only want to see errors on your production sites, create an alias like so:
+
+```bash
+# Presumes dashboard-console is the phar file and in your PATH.
+alias prod-errors='dashboard-console snapshot -s test_site,test_site2 --alert-level=error'
+```bash
