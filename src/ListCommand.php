@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * A command for getting snapshots.
  */
-class SnapshotsCommand extends BaseDashboardCommand {
+class ListCommand extends BaseDashboardCommand {
 
   /**
    * {@inheritdoc}
