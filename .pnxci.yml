@@ -11,7 +11,7 @@ prepare: &prepare
   - composer install --prefer-dist --no-progress
 
 test: &test
-  - bin/make lint-php
+  - make lint-php
 
 test_pr:
   setup: *prepare
