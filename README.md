@@ -86,20 +86,9 @@ dash list
 
 ## Building PHAR
 
-**Install phar-composer**
-
 ```
-https://github.com/clue/phar-composer#install
+$ make phar
 ```
-
-**Build the project**
-
-```
-$ php -d phar.readonly=off /usr/local/bin/phar-composer build .
-```
-
-**NOTE**: The above was run in the projects root.
-
 
 ### Personalisation
 
