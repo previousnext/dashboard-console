@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains PNX\Dashboard\BaseDashboardCommand
- */
-
 namespace PNX\Dashboard;
 
 use GuzzleHttp\Client;
@@ -20,6 +15,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class BaseDashboardCommand extends Command {
 
   /**
+   * The HTTP client.
+   *
    * @var \GuzzleHttp\Client
    */
   protected $client;
@@ -109,9 +106,9 @@ abstract class BaseDashboardCommand extends Command {
    * a Closure to the setCode() method.
    *
    * @param InputInterface $input
-   *   An InputInterface instance
+   *   An InputInterface instance.
    * @param OutputInterface $output
-   *   An OutputInterface instance
+   *   An OutputInterface instance.
    * @param array $options
    *   An array of http client options.
    *
@@ -121,4 +118,5 @@ abstract class BaseDashboardCommand extends Command {
    * @see \Symfony\Component\Console\Command\Command::execute
    */
   abstract protected function doExecute(InputInterface $input, OutputInterface $output, $options);
+
 }

@@ -7,9 +7,8 @@
   },
   "require-dev": {
     "phpunit/phpunit": "~4.8",
-    "codegyre/robo": "~0.6",
-    "squizlabs/php_codesniffer": "~1.5",
-    "drupal/coder": "<8"
+    "drupal/coder": "~8.0",
+    "clue/phar-composer": "^1.0"
   },
   "autoload": {
     "psr-4": {

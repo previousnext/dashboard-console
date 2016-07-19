@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains PNX\Dashboard\SnapshotCommand
- */
-
 namespace PNX\Dashboard;
 
 use Symfony\Component\Console\Helper\Table;
@@ -124,4 +119,5 @@ class GetCommand extends BaseDashboardCommand {
         return "<info>$alert</info>";
     }
   }
+
 }

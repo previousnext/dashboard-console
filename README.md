@@ -18,13 +18,13 @@ For example:
 
 ```bash
 chmod +x dashboard-console.phar
-mv dashboard-console.phar /usr/local/bin/dashboard-console
+mv dashboard-console.phar /usr/local/bin/dash
 ```
 
 You can then run the command from anywhere using:
 
 ```
-dashboard-console snapshots
+dash list
 ```
 
 _See details below on storing passwords in environment variables._
@@ -45,7 +45,7 @@ other for viewing the detail of an individual site.
 
 To view all snapshots, run the command:
 
-`dashboard-console snapshots --password <SECRET PASSWORD>`
+`dash list --password <SECRET PASSWORD>`
 
 To filter to show only snapshots which have _error_ alerts. Add the flag:
 
@@ -55,7 +55,7 @@ To filter to show only snapshots which have _error_ alerts. Add the flag:
 
 To view the details of a snapshot, run the command:
 
-`./dashboard.php snapshot --site-id=<SITE ID> --password <SECRET PASSWORD>`
+`dash get --site-id=<SITE ID> --password <SECRET PASSWORD>`
 
 Where `<SITE ID>` is the unique site ID. This is displayed in the _snapshots_
 output.
@@ -75,13 +75,13 @@ export DASHBOARD_PASSWORD=<SECRET PASSWORD>
 The command becomes simply:
 
 ```bash
-./dashboard.php snapshots
+./dashboard.php list
 ```
 
 Or if you followed the steps above for downloading the phar file:
 
 ```bash
-dashboard-console snapshots
+dash list
 ```
 
 ## Building PHAR
@@ -115,5 +115,5 @@ Most of the time you'll only want to see errors on your production sites, create
 
 ```bash
 # Presumes dashboard-console is the phar file and in your PATH.
-alias prod-errors='dashboard-console snapshot -s test_site,test_site2 --alert-level=error'
+alias prod-errors='dash get -s test_site,test_site2 --alert-level=error'
 ```

@@ -17,7 +17,6 @@ init:
 	@echo ${cc_green}">>> Installing dependencies..."${cc_end}
 	composer install --prefer-dist --no-progress
 
-
 lint-php:
 	@echo ${cc_green}">>> Linting PHP code style..."${cc_end}
 	bin/phpcs --standard=${PHPCS_STANDARD} ${PHPCS_DIRS}
@@ -25,3 +24,7 @@ lint-php:
 fix-php:
 	@echo ${cc_green}">>> Fixing PHP code style..."${cc_end}
 	bin/phpcbf --standard=${PHPCS_STANDARD} ${PHPCS_DIRS}
+
+phar:
+	@echo ${cc_green}">>> Building phar..."${cc_end}
+	php -d phar.readonly=off bin/phar-composer build .
