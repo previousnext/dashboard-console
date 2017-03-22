@@ -6,7 +6,7 @@
  */
 
 const APP_NAME = 'Dashboard Console';
-const VERSION = '0.0.6';
+const VERSION = '0.0.7';
 
 require __DIR__ . '/vendor/autoload.php';
 
