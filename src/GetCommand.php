@@ -29,7 +29,7 @@ class GetCommand extends BaseDashboardCommand {
   /**
    * {@inheritdoc}
    */
-  protected function doExecute(InputInterface $input, OutputInterface $output, $options) {
+  protected function doExecute(InputInterface $input, OutputInterface $output, array $options) {
 
     $site_ids = explode(',', $input->getOption('site-id'));
 

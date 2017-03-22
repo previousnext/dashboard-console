@@ -24,7 +24,7 @@ mv dashboard-console.phar /usr/local/bin/dash
 You can then run the command from anywhere using:
 
 ```
-dash list
+dash list-all
 ```
 
 _See details below on storing passwords in environment variables._
@@ -45,7 +45,7 @@ other for viewing the detail of an individual site.
 
 To view all snapshots, run the command:
 
-`dash list --password <SECRET PASSWORD>`
+`dash list-all --password <SECRET PASSWORD>`
 
 To filter to show only snapshots which have _error_ alerts. Add the flag:
 
@@ -75,13 +75,13 @@ export DASHBOARD_PASSWORD=<SECRET PASSWORD>
 The command becomes simply:
 
 ```bash
-./dashboard.php list
+./dashboard.php list-all
 ```
 
 Or if you followed the steps above for downloading the phar file:
 
 ```bash
-dash list
+dash list-all
 ```
 
 ## Building PHAR

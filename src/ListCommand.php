@@ -17,7 +17,7 @@ class ListCommand extends BaseDashboardCommand {
    * {@inheritdoc}
    */
   protected function doConfigure() {
-    $this->setName('list')
+    $this->setName('list-all')
       ->setDescription("List snapshot data.")
       ->addOption('client-id', 'c', InputArgument::OPTIONAL, "Filter by the client ID.")
       ->addOption('check-name', NULL, InputArgument::OPTIONAL, "Filter by the check name.")
@@ -29,7 +29,7 @@ class ListCommand extends BaseDashboardCommand {
   /**
    * {@inheritdoc}
    */
-  protected function doExecute(InputInterface $input, OutputInterface $output, $options) {
+  protected function doExecute(InputInterface $input, OutputInterface $output, array $options) {
 
     $client_id = $input->getOption('client-id') ?: getenv('DASHBOARD_CLIENT_ID');
     if ($client_id) {
@@ -72,12 +72,12 @@ class ListCommand extends BaseDashboardCommand {
   /**
    * Formats the sites into CSV structure. Ideal for scripting.
    *
-   * @param OutputInterface $output
+   * @param \Symfony\Component\Console\Output\OutputInterface $output
    *   Output interface which will get written to.
    * @param array $sites
    *   A list of sites.
    */
-  protected function formatCsv(OutputInterface $output, $sites) {
+  protected function formatCsv(OutputInterface $output, array $sites) {
     foreach ($sites as $site) {
       $line = array(
         $site['client_id'],
@@ -94,12 +94,12 @@ class ListCommand extends BaseDashboardCommand {
   /**
    * Formats the sites into Table structure.
    *
-   * @param OutputInterface $output
+   * @param \Symfony\Component\Console\Output\OutputInterface $output
    *   Output interface which will get written to.
    * @param array $sites
    *   A list of sites.
    */
-  protected function formatTable(OutputInterface $output, $sites) {
+  protected function formatTable(OutputInterface $output, array $sites) {
     $table = new Table($output);
     $table
       ->setHeaders([

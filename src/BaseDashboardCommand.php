@@ -105,9 +105,9 @@ abstract class BaseDashboardCommand extends Command {
    * execute() method, you set the code to execute by passing
    * a Closure to the setCode() method.
    *
-   * @param InputInterface $input
+   * @param \Symfony\Component\Console\Input\InputInterface $input
    *   An InputInterface instance.
-   * @param OutputInterface $output
+   * @param \Symfony\Component\Console\Output\OutputInterface $output
    *   An OutputInterface instance.
    * @param array $options
    *   An array of http client options.
@@ -117,6 +117,6 @@ abstract class BaseDashboardCommand extends Command {
    *
    * @see \Symfony\Component\Console\Command\Command::execute
    */
-  abstract protected function doExecute(InputInterface $input, OutputInterface $output, $options);
+  abstract protected function doExecute(InputInterface $input, OutputInterface $output, array $options);
 
 }
