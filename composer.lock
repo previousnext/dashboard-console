@@ -928,6 +928,7 @@
             "keywords": [
                 "exception"
             ],
+            "abandoned": true,
             "time": "2013-08-27T17:43:25+00:00"
         },
         {
@@ -980,6 +981,7 @@
                 "path",
                 "system"
             ],
+            "abandoned": true,
             "time": "2013-10-15T22:58:04+00:00"
         },
         {

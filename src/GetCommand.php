@@ -23,7 +23,7 @@ class GetCommand extends BaseDashboardCommand {
   protected function doConfigure() {
     $this->setName('get')
       ->setDescription("Get snapshot data.")
-      ->addOption('site-id', 's', InputArgument::OPTIONAL, "The site ID.");
+      ->addArgument('site-id', InputArgument::REQUIRED | InputArgument::IS_ARRAY, "The site ID.");
   }
 
   /**
@@ -31,7 +31,7 @@ class GetCommand extends BaseDashboardCommand {
    */
   protected function doExecute(InputInterface $input, OutputInterface $output, array $options) {
 
-    $site_ids = explode(',', $input->getOption('site-id'));
+    $site_ids = $input->getArgument('site-id');
 
     foreach ($site_ids as $site_id) {
       try {
@@ -51,7 +51,10 @@ class GetCommand extends BaseDashboardCommand {
         $snapshot = json_decode($json, TRUE);
 
         $table = new Table($output);
-        $table->addRow(['Timestamp:', $this->formatTimestamp($snapshot['timestamp'])]);
+        $table->addRow([
+          'Timestamp:',
+          $this->formatTimestamp($snapshot['timestamp']),
+        ]);
         $table->addRow(['Client ID:', $snapshot['client_id']]);
         $table->addRow(['Site ID:', $snapshot['site_id']]);
 

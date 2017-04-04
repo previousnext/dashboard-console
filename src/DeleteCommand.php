@@ -17,14 +17,14 @@ class DeleteCommand extends BaseDashboardCommand {
   protected function doConfigure() {
     $this->setName('delete')
       ->setDescription("Delete snapshot data.")
-      ->addOption('site-id', 's', InputArgument::OPTIONAL, "The site ID.");
+      ->addArgument('site-id', InputArgument::REQUIRED | InputArgument::IS_ARRAY, "The site ID.");
   }
 
   /**
    * {@inheritdoc}
    */
   protected function doExecute(InputInterface $input, OutputInterface $output, array $options) {
-    $site_ids = explode(',', $input->getOption('site-id'));
+    $site_ids = $input->getOption('site-id');
 
     foreach ($site_ids as $site_id) {
       try {
