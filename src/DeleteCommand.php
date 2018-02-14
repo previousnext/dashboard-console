@@ -24,7 +24,7 @@ class DeleteCommand extends BaseDashboardCommand {
    * {@inheritdoc}
    */
   protected function doExecute(InputInterface $input, OutputInterface $output, array $options) {
-    $site_ids = $input->getOption('site-id');
+    $site_ids = $input->getArgument('site-id');
 
     foreach ($site_ids as $site_id) {
       try {
