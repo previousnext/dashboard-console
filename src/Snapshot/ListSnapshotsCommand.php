@@ -1,6 +1,6 @@
 <?php
 
-namespace PNX\Dashboard;
+namespace PNX\Dashboard\Snapshot;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,13 +11,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * A command for getting snapshots.
  */
-class ListCommand extends BaseDashboardCommand {
+class ListSnapshotsCommand extends BaseSnapshotCommand {
 
   /**
    * {@inheritdoc}
    */
-  protected function doConfigure() {
-    $this->setName('list-all')
+  protected function configure() {
+    parent::configure();
+    $this->setName('snapshot:list')
       ->setDescription("List snapshot data.")
       ->addOption('client-id', 'c', InputArgument::OPTIONAL, "Filter by the client ID.")
       ->addOption('check-name', NULL, InputArgument::OPTIONAL, "Filter by the check name.")

@@ -1,10 +1,9 @@
 <?php
 
-namespace PNX\Dashboard;
+namespace PNX\Dashboard\Snapshot;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Symfony\Component\Console\Command\Command;
+use PNX\Dashboard\BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,40 +11,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Base dashboard command.
  */
-abstract class BaseDashboardCommand extends Command {
-
-  /**
-   * The HTTP client.
-   *
-   * @var \GuzzleHttp\Client
-   */
-  protected $client;
-
-  /**
-   * SnapshotsCommand constructor.
-   */
-  public function __construct(Client $client) {
-    parent::__construct();
-    $this->client = $client;
-  }
+abstract class BaseSnapshotCommand extends BaseCommand {
 
   /**
    * {@inheritdoc}
    */
   protected function configure() {
-    $this->addOption('base-url', 'u', InputArgument::OPTIONAL, "The base url of the Dashboard API", "https://status.previousnext.com.au")
-      ->addOption('alert-level', 'l', InputArgument::OPTIONAL, "Filter by the alert level.")
-      ->addOption('username', NULL, InputArgument::OPTIONAL, "The Dashboard API username.", "admin")
-      ->addOption('password', 'p', InputArgument::OPTIONAL, "The Dashboard API password.");
-    $this->doConfigure();
+    parent::configure();
+    $this->addOption('alert-level', 'l', InputArgument::OPTIONAL, "Filter by the alert level.");
   }
-
-  /**
-   * Configures the current command.
-   *
-   * @see \Symfony\Component\Console\Command\Command::configure
-   */
-  abstract protected function doConfigure();
 
   /**
    * {@inheritdoc}

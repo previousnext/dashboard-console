@@ -1,6 +1,6 @@
 <?php
 
-namespace PNX\Dashboard;
+namespace PNX\Dashboard\Snapshot;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,13 +9,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Provides a delete command.
  */
-class DeleteCommand extends BaseDashboardCommand {
+class DeleteSnapshotCommand extends BaseSnapshotCommand {
 
   /**
    * {@inheritdoc}
    */
-  protected function doConfigure() {
-    $this->setName('delete')
+  protected function configure() {
+    parent::configure();
+    $this->setName('snapshot:delete')
       ->setDescription("Delete snapshot data.")
       ->addArgument('site-id', InputArgument::REQUIRED | InputArgument::IS_ARRAY, "The site ID.");
   }

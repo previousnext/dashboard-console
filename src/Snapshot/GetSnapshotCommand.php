@@ -1,6 +1,6 @@
 <?php
 
-namespace PNX\Dashboard;
+namespace PNX\Dashboard\Snapshot;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Provides a command for querying a snapshot detail.
  */
-class GetCommand extends BaseDashboardCommand {
+class GetSnapshotCommand extends BaseSnapshotCommand {
 
   /**
    * The maximum length of the description field.
@@ -20,8 +20,9 @@ class GetCommand extends BaseDashboardCommand {
   /**
    * {@inheritdoc}
    */
-  protected function doConfigure() {
-    $this->setName('get')
+  protected function configure() {
+    parent::configure();
+    $this->setName('snapshot:get')
       ->setDescription("Get snapshot data.")
       ->addArgument('site-id', InputArgument::REQUIRED | InputArgument::IS_ARRAY, "The site ID.");
   }
