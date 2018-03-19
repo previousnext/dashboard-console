@@ -115,7 +115,7 @@ class ListSnapshotsCommand extends BaseSnapshotCommand {
 
     foreach ($sites as $site) {
       $table->addRow([
-        $this->formatTimestamp($site['timestamp']),
+        Formatter::formatTimestamp($site['timestamp']),
         $site['client_id'],
         $site['site_id'],
         $site['env'],

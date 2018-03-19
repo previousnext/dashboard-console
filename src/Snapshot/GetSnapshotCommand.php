@@ -54,7 +54,7 @@ class GetSnapshotCommand extends BaseSnapshotCommand {
         $table = new Table($output);
         $table->addRow([
           'Timestamp:',
-          $this->formatTimestamp($snapshot['timestamp']),
+          Formatter::formatTimestamp($snapshot['timestamp']),
         ]);
         $table->addRow(['Client ID:', $snapshot['client_id']]);
         $table->addRow(['Site ID:', $snapshot['site_id']]);

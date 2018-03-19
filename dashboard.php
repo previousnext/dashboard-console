@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 use PNX\Dashboard\Snapshot\DeleteSnapshotCommand;
 use PNX\Dashboard\Snapshot\GetSnapshotCommand;
 use PNX\Dashboard\Snapshot\ListSnapshotsCommand;
+use PNX\Dashboard\User\GetUserCommand;
 use Symfony\Component\Console\Application;
 
 $client = new Client([
@@ -26,4 +27,5 @@ $application = new Application(APP_NAME, VERSION);
 $application->add(new ListSnapshotsCommand($client));
 $application->add(new GetSnapshotCommand($client));
 $application->add(new DeleteSnapshotCommand($client));
+$application->add(new GetUserCommand($client));
 $application->run();
