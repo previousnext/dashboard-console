@@ -33,7 +33,7 @@ class Formatter {
    * Formats a boolean as a string.
    *
    * @param bool $value
-   *   The boolean value
+   *   The boolean value.
    *
    * @return string
    *   The string representation.
@@ -41,4 +41,5 @@ class Formatter {
   public static function formatBoolean($value) {
     return $value ? 'true' : 'false';
   }
+
 }

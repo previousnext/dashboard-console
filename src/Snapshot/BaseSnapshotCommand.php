@@ -2,7 +2,6 @@
 
 namespace PNX\Dashboard\Snapshot;
 
-use GuzzleHttp\Exception\GuzzleException;
 use PNX\Dashboard\BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
