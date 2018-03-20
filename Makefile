@@ -20,5 +20,6 @@ fix-php:
 	bin/phpcbf --standard=${PHPCS_STANDARD} ${PHPCS_DIRS}
 
 phar:
+	rm dashboard-console.phar
 	composer install --no-dev
 	php -d phar.readonly=off bin/phar-composer build .
