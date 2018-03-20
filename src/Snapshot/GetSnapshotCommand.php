@@ -2,6 +2,7 @@
 
 namespace PNX\Dashboard\Snapshot;
 
+use PNX\Dashboard\Utils\Formatter;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

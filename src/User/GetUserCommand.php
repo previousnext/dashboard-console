@@ -3,7 +3,7 @@
 namespace PNX\Dashboard\User;
 
 use PNX\Dashboard\BaseCommand;
-use PNX\Dashboard\Snapshot\Formatter;
+use PNX\Dashboard\Utils\Formatter;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

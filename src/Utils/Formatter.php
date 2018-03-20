@@ -1,6 +1,6 @@
 <?php
 
-namespace PNX\Dashboard\Snapshot;
+namespace PNX\Dashboard\Utils;
 
 /**
  * Provides formatting utilities.
