@@ -15,6 +15,7 @@ use PNX\Dashboard\Snapshot\DeleteSnapshotCommand;
 use PNX\Dashboard\Snapshot\GetSnapshotCommand;
 use PNX\Dashboard\Snapshot\ListSnapshotsCommand;
 use PNX\Dashboard\User\CreateUserCommand;
+use PNX\Dashboard\User\DeleteUserCommand;
 use PNX\Dashboard\User\GetUserCommand;
 use PNX\Dashboard\User\UpdateUserCommand;
 use Symfony\Component\Console\Application;
@@ -32,5 +33,6 @@ $application->add(new DeleteSnapshotCommand($client));
 $application->add(new GetUserCommand($client));
 $application->add(new CreateUserCommand($client));
 $application->add(new UpdateUserCommand($client));
+$application->add(new DeleteUserCommand($client));
 
 $application->run();
