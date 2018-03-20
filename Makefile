@@ -4,7 +4,6 @@ PHPCS_STANDARD="vendor/drupal/coder/coder_sniffer/Drupal"
 PHPCS_DIRS=src
 
 # Display a list of the commands
-.PHONY: list
 list:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1n}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
@@ -23,3 +22,5 @@ phar:
 	rm dashboard-console.phar
 	composer install --no-dev
 	php -d phar.readonly=off bin/phar-composer build .
+
+.PHONY: list build init lint-php fix-php phar
