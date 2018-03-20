@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3baac9ddc1ac3d20d5963bea9954de9c",
+    "content-hash": "853cb1040f7e6b9dbacacb83f8d258c9",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -367,6 +367,132 @@
     ],
     "packages-dev": [
         {
+            "name": "clue/phar-composer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/previousnext/phar-composer.git",
+                "reference": "03b134b4e4c99faf01d213afc0920e2aa75afc35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/previousnext/phar-composer/zipball/03b134b4e4c99faf01d213afc0920e2aa75afc35",
+                "reference": "03b134b4e4c99faf01d213afc0920e2aa75afc35",
+                "shasum": ""
+            },
+            "require": {
+                "herrera-io/box": "~1.5",
+                "knplabs/packagist-api": "~1.0",
+                "symfony/console": "~4.0",
+                "symfony/finder": "~4.0",
+                "symfony/process": "~4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "bin": [
+                "bin/phar-composer"
+            ],
+            "type": "library",
+            "extra": {
+                "phar": {
+                    "bundler": "composer"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Clue": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "Simple phar creation for your projects managed via composer",
+            "homepage": "https://github.com/clue/phar-composer",
+            "keywords": [
+                "build process",
+                "bundle dependencies",
+                "executable phar"
+            ],
+            "support": {
+                "source": "https://github.com/previousnext/phar-composer/tree/master"
+            },
+            "time": "2018-03-20T09:04:20+00:00"
+        },
+        {
+            "name": "doctrine/inflector",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/inflector.git",
+                "reference": "5527a48b7313d15261292c149e55e26eae771b0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/5527a48b7313d15261292c149e55e26eae771b0a",
+                "reference": "5527a48b7313d15261292c149e55e26eae771b0a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Common String Manipulations with regard to casing and singular/plural rules.",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "inflection",
+                "pluralize",
+                "singularize",
+                "string"
+            ],
+            "time": "2018-01-09T20:05:19+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {
@@ -456,6 +582,118 @@
                 "standards"
             ],
             "time": "2017-03-18T10:28:49+00:00"
+        },
+        {
+            "name": "herrera-io/box",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/box-project/box2-lib.git",
+                "reference": "b55dceb5c65cc831e94ec0786b0b9b15f1103e8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/box-project/box2-lib/zipball/b55dceb5c65cc831e94ec0786b0b9b15f1103e8e",
+                "reference": "b55dceb5c65cc831e94ec0786b0b9b15f1103e8e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-phar": "*",
+                "phine/path": "~1.0",
+                "php": ">=5.3.3",
+                "tedivm/jshrink": "~1.0"
+            },
+            "require-dev": {
+                "herrera-io/annotations": "~1.0",
+                "herrera-io/phpunit-test-case": "1.*",
+                "mikey179/vfsstream": "1.1.0",
+                "phpseclib/phpseclib": "~0.3",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "herrera-io/annotations": "For compacting annotated docblocks.",
+                "phpseclib/phpseclib": "For verifying OpenSSL signed phars without the phar extension."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Herrera\\Box": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A library for simplifying the PHAR build process.",
+            "homepage": "https://github.com/box-project/box2-lib",
+            "keywords": [
+                "phar"
+            ],
+            "time": "2014-12-03T23:26:45+00:00"
+        },
+        {
+            "name": "knplabs/packagist-api",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/packagist-api.git",
+                "reference": "74dbe93eab7cb80feb8fb9f2294f962d8d37fc71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/packagist-api/zipball/74dbe93eab7cb80feb8fb9f2294f962d8d37fc71",
+                "reference": "74dbe93eab7cb80feb8fb9f2294f962d8d37fc71",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "~1.0",
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Packagist\\Api\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                }
+            ],
+            "description": "Packagist API client.",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "api",
+                "composer",
+                "packagist"
+            ],
+            "time": "2018-01-19T08:15:53+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -603,6 +841,109 @@
             ],
             "description": "Library for handling version information and constraints",
             "time": "2017-03-05T17:38:23+00:00"
+        },
+        {
+            "name": "phine/exception",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kherge-abandoned/lib-exception.git",
+                "reference": "150c6b6090b2ebc53c60e87cb20c7f1287b7b68a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kherge-abandoned/lib-exception/zipball/150c6b6090b2ebc53c60e87cb20c7f1287b7b68a",
+                "reference": "150c6b6090b2ebc53c60e87cb20c7f1287b7b68a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "league/phpunit-coverage-listener": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phine\\Exception": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A PHP library for improving the use of exceptions.",
+            "homepage": "https://github.com/phine/lib-exception",
+            "keywords": [
+                "exception"
+            ],
+            "abandoned": true,
+            "time": "2013-08-27T17:43:25+00:00"
+        },
+        {
+            "name": "phine/path",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/box-project/box2-path.git",
+                "reference": "cbe1a5eb6cf22958394db2469af9b773508abddd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/box-project/box2-path/zipball/cbe1a5eb6cf22958394db2469af9b773508abddd",
+                "reference": "cbe1a5eb6cf22958394db2469af9b773508abddd",
+                "shasum": ""
+            },
+            "require": {
+                "phine/exception": "~1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "league/phpunit-coverage-listener": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phine\\Path": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A PHP library for improving the use of file system paths.",
+            "homepage": "https://github.com/phine/lib-path",
+            "keywords": [
+                "file",
+                "path",
+                "system"
+            ],
+            "abandoned": true,
+            "time": "2013-10-15T22:58:04+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1846,6 +2187,104 @@
             "time": "2017-05-22T02:43:20+00:00"
         },
         {
+            "name": "symfony/finder",
+            "version": "v4.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "44a796d2ecc2a16a5fc8f2956a34ee617934d55f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/44a796d2ecc2a16a5fc8f2956a34ee617934d55f",
+                "reference": "44a796d2ecc2a16a5fc8f2956a34ee617934d55f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-03-05T18:28:26+00:00"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v4.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "6ed08502a7c9559da8e60ea343bdbd19c3350b3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/6ed08502a7c9559da8e60ea343bdbd19c3350b3e",
+                "reference": "6ed08502a7c9559da8e60ea343bdbd19c3350b3e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-02-19T12:18:43+00:00"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v4.0.6",
             "source": {
@@ -1902,6 +2341,52 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2018-02-19T20:08:53+00:00"
+        },
+        {
+            "name": "tedivm/jshrink",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tedious/JShrink.git",
+                "reference": "68ce379b213741e86f02bf6053b0d26b9f833448"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tedious/JShrink/zipball/68ce379b213741e86f02bf6053b0d26b9f833448",
+                "reference": "68ce379b213741e86f02bf6053b0d26b9f833448",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.8",
+                "php-coveralls/php-coveralls": "^1.1.0",
+                "phpunit/phpunit": "^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JShrink": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Hafner",
+                    "email": "tedivm@tedivm.com"
+                }
+            ],
+            "description": "Javascript Minifier built in PHP",
+            "homepage": "http://github.com/tedious/JShrink",
+            "keywords": [
+                "javascript",
+                "minifier"
+            ],
+            "time": "2017-12-08T00:59:56+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -1996,7 +2481,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "clue/phar-composer": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
