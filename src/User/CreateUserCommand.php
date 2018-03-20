@@ -58,8 +58,6 @@ class CreateUserCommand extends BaseCommand {
     $json = json_encode($user);
     $options['body'] = $json;
 
-    print_r($options);
-
     $response = $this->client->post('/users', $options);
 
     if ($response->getStatusCode() != 204) {

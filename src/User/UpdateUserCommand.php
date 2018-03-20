@@ -56,7 +56,6 @@ class UpdateUserCommand extends BaseCommand {
     $body = json_encode($user);
     $options['body'] = $body;
 
-    print_r($options);
     $response = $this->client->patch('/users/' . $username, $options);
 
     if ($response->getStatusCode() != 204) {
