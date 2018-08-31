@@ -52,6 +52,7 @@ jobs:
     - image: cibuilds/github
     working_directory: /data
     steps:
+    - checkout
     - restore_cache:
         keys:
         - deps-{{ arch }}-{{ checksum "composer.lock" }}
