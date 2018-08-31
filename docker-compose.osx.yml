@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  app:
+    image: previousnext/php-apache:7.1-3.x-dev
+    ports:
+      - "80:80"
+    volumes:
+      - .:/data:cached
+      - $HOME/.ssh:/root/.ssh
+      - $HOME/.composer:/root/.composer
+    environment:
+      - XDEBUG_CONFIG=remote_host=docker.for.mac.host.internal remote_connect_back=0
+      - PHP_IDE_CONFIG=serverName=localhost

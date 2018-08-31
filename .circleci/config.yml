@@ -15,6 +15,15 @@ workflows:
     jobs:
     - test:
         <<: *defaults
+  release:
+    jobs:
+    - release:
+        <<: *defaults
+      filters:
+        branches:
+          only: master
+#        tags:
+#          only: /^\d+\.\d+\.\d+$/
 
 jobs:
   test:
@@ -37,3 +46,23 @@ jobs:
     - run:
         name: "Test: Lint"
         command: make lint-php
+
+  release:
+    docker:
+    - image: cibuilds/github
+    working_directory: /data
+    steps:
+    - restore_cache:
+        keys:
+        - deps-{{ arch }}-{{ checksum "composer.lock" }}
+    - run:
+        name: "Setup: Dependencies"
+        command: make init
+    - run:
+        name: "Package Phar"
+        command: make phar
+    - run:
+        name: "Upload release"
+        command: |
+          VERSION=$(git describe --tags --always)
+          ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
