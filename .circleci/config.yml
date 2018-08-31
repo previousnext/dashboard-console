@@ -22,6 +22,9 @@ workflows:
         filters:
           branches:
             only: master
+        tags:
+          only: /^\d+\.\d+\.\d+$/
+
     - publish_release:
         <<: *defaults
         requires:
@@ -29,8 +32,8 @@ workflows:
         filters:
           branches:
             only: master
-#        tags:
-#          only: /^\d+\.\d+\.\d+$/
+        tags:
+          only: /^\d+\.\d+\.\d+$/
 
 jobs:
   test:
@@ -53,11 +56,6 @@ jobs:
     - run:
         name: "Test: Lint"
         command: make lint-php
-    - persist_to_workspace:
-        root: /data
-        # Must be relative path from root
-        paths:
-        - dashboard-console.phar
 
   build_phar:
     docker:
@@ -92,4 +90,4 @@ jobs:
         name: "Upload release"
         command: |
           VERSION=$(git describe --tags --always)
-          ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} dashboard-console.phar
+          ghr -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} dashboard-console.phar
