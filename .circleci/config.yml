@@ -19,9 +19,9 @@ workflows:
     jobs:
     - release:
         <<: *defaults
-      filters:
-        branches:
-          only: master
+        filters:
+          branches:
+            only: master
 #        tags:
 #          only: /^\d+\.\d+\.\d+$/
 
