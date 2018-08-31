@@ -65,8 +65,13 @@ jobs:
     working_directory: /data
     steps:
     - checkout
-    - attach_workspace:
-        at: /data
+    - restore_cache:
+        keys:
+        - deps-{{ arch }}-{{ checksum "composer.lock" }}
+    - run:
+        name: "Setup: Dependencies"
+        command: |
+          make init
     - run:
         name: Build phar
         command: make phar
