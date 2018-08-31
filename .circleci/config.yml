@@ -15,10 +15,17 @@ workflows:
     jobs:
     - test:
         <<: *defaults
-  release:
+  publish_release:
     jobs:
-    - release:
+    - build_phar:
         <<: *defaults
+        filters:
+          branches:
+            only: master
+    - publish_release:
+        <<: *defaults
+        requires:
+          - build_phar
         filters:
           branches:
             only: master
@@ -46,22 +53,36 @@ jobs:
     - run:
         name: "Test: Lint"
         command: make lint-php
+    - persist_to_workspace:
+        root: /data
+        # Must be relative path from root
+        paths:
+        - .
 
-  release:
+  build_phar:
+    docker:
+    - image: previousnext/php-apache:7.1-3.x-dev
+    working_directory: /data
+    steps:
+    - checkout
+    - attach_workspace:
+        at: /data
+    - run:
+        name: Build phar
+        command: make phar
+    - persist_to_workspace:
+        root: /data
+        # Must be relative path from root
+        paths:
+        - .
+
+  publish_release:
     docker:
     - image: cibuilds/github
     working_directory: /data
     steps:
-    - checkout
-    - restore_cache:
-        keys:
-        - deps-{{ arch }}-{{ checksum "composer.lock" }}
-    - run:
-        name: "Setup: Dependencies"
-        command: make init
-    - run:
-        name: "Package Phar"
-        command: make phar
+    - attach_workspace:
+        at: /data
     - run:
         name: "Upload release"
         command: |
