@@ -92,5 +92,4 @@ jobs:
         name: "Upload release"
         command: |
           VERSION=$(git describe --tags --always)
-          echo $(CIRCLE_PROJECT_USERNAME)
-          ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} dashboard-console.phar
+          ghr -t ${GITHUB_TOKEN} -u pnx-jenkins -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} dashboard-console.phar
