@@ -2,6 +2,7 @@
 
 namespace PNX\Dashboard\Snapshot;
 
+use PNX\Dashboard\BaseCommand;
 use PNX\Dashboard\Utils\Formatter;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Provides a command for querying a snapshot detail.
  */
-class GetSnapshotCommand extends BaseSnapshotCommand {
+class GetSnapshotCommand extends BaseCommand {
 
   /**
    * The maximum length of the description field.
@@ -25,7 +26,8 @@ class GetSnapshotCommand extends BaseSnapshotCommand {
     parent::configure();
     $this->setName('snapshot:get')
       ->setDescription("Get snapshot data.")
-      ->addArgument('site-id', InputArgument::REQUIRED | InputArgument::IS_ARRAY, "The site ID.");
+      ->addArgument('site-id', InputArgument::REQUIRED | InputArgument::IS_ARRAY, "The site ID.")
+      ->addOption('alert-level', 'l', InputArgument::OPTIONAL, "Filter by the alert level.");
   }
 
   /**
@@ -34,7 +36,9 @@ class GetSnapshotCommand extends BaseSnapshotCommand {
   protected function doExecute(InputInterface $input, OutputInterface $output, array $options) {
 
     $site_ids = $input->getArgument('site-id');
-
+    if ($alert_level = $input->getOption('alert-level')) {
+      $options['query']['alert_level'] = $alert_level;
+    }
     foreach ($site_ids as $site_id) {
       try {
         $response = $this->client->get('snapshots/' . $site_id, $options);
