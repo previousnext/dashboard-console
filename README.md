@@ -24,7 +24,7 @@ mv dashboard-console.phar /usr/local/bin/dash
 You can then run the command from anywhere using:
 
 ```
-dash list-all
+dash snapshot:list
 ```
 
 _See details below on storing passwords in environment variables._
@@ -45,20 +45,20 @@ other for viewing the detail of an individual site.
 
 To view all snapshots, run the command:
 
-`dash list-all --password <SECRET PASSWORD>`
-
-To filter to show only snapshots which have _error_ alerts. Add the flag:
-
-`--alert-level=error`
+`dash snapshot:list --password <SECRET PASSWORD>`
 
 ### View snapshot details
 
 To view the details of a snapshot, run the command:
 
-`dash get --site-id=<SITE ID> --password <SECRET PASSWORD>`
+`dash snapshot:get <SITE ID> --password <SECRET PASSWORD>`
 
 Where `<SITE ID>` is the unique site ID. This is displayed in the _snapshots_
 output.
+
+To filter the snapshot down to only  _error_ alerts. Add the flag:
+
+`--alert-level=error`
 
 ### Using environment variables to store credentials
 
@@ -75,13 +75,13 @@ export DASHBOARD_PASSWORD=<SECRET PASSWORD>
 The command becomes simply:
 
 ```bash
-./dashboard.php list-all
+./dashboard.php snapshot:list
 ```
 
 Or if you followed the steps above for downloading the phar file:
 
 ```bash
-dash list-all
+dash snapshot:list
 ```
 
 ## Building PHAR
@@ -104,5 +104,5 @@ Most of the time you'll only want to see errors on your production sites, create
 
 ```bash
 # Presumes dashboard-console is the phar file and in your PATH.
-alias prod-errors='dash get -s test_site,test_site2 --alert-level=error'
+alias prod-errors='dash snapshot:get test_site test_site2 --alert-level=error'
 ```
