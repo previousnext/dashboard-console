@@ -2,6 +2,7 @@
 
 namespace PNX\Dashboard\Snapshot;
 
+use PNX\Dashboard\BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -9,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Provides a delete command.
  */
-class DeleteSnapshotCommand extends BaseSnapshotCommand {
+class DeleteSnapshotCommand extends BaseCommand {
 
   /**
    * {@inheritdoc}

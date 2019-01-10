@@ -2,6 +2,7 @@
 
 namespace PNX\Dashboard\Snapshot;
 
+use PNX\Dashboard\BaseCommand;
 use PNX\Dashboard\Utils\Formatter;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * A command for getting snapshots.
  */
-class ListSnapshotsCommand extends BaseSnapshotCommand {
+class ListSnapshotsCommand extends BaseCommand {
 
   /**
    * {@inheritdoc}
